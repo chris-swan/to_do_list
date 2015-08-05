@@ -1,9 +1,9 @@
 <?php
 class Task
 {
-    private $descrtiption;
+    private $description;
 
-    function __construction($description)
+    function __construct($description)
     {
         $this->description = $description;
     }
