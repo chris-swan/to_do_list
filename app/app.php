@@ -15,33 +15,13 @@
 
     $app->get("/", function() use($app) {
 
-        $output = "";
-
-        $all_tasks = Task::getAll();
-
-        if  (!empty($all_tasks)) {
-            $output .= "
-                <h1>To Do List</h1>
-                <p>Here are all your tasks:</p>
-                ";
-
-
-            foreach (Task::getAll() as $task) {
-                $output .= "<p>" . $task->getDescription() . "</p>";
-            }
-        };
-
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
 
-    $app->post("/tasks", function(){
-        $task = new Task($_POST['description']);
+    $app->post("/tasks", function() use ($app) {
+        $task = new Task(_$POST['description']);
         $task->save();
-        return "
-            <h1>You created a task!</h1>
-            <p>" . $task->getDescription() . "</p>
-            <p><a href='/'>View your list of things to do.</a></p>
-        ";
+        return $app['twig']->render('create_task.html.twig');
     });
 
     $app->post("/delete_tasks", function() {
