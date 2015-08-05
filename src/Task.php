@@ -25,7 +25,7 @@ class Task
 
     static function getAll()
     {
-        return $_SESSION['list_of_tasts'];
+        return $_SESSION['list_of_tasks'];
     }
 }
 
