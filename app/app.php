@@ -30,7 +30,7 @@
         $output .= "
             <form action='/tasks' method='post'>
                 <label for='description>'Task Description</label>
-                <input id='description' name='desciption' type='text'>
+                <input id='description' name='description' type='text'>
 
                 <button type='submit'>Add task</button>
             </form>
@@ -54,6 +54,17 @@
             <p><a href='/'>View your list of things to do.</a></p>
         ";
     });
+
+    $app->post("/delete_tasks", function() {
+
+        Task::deleteAll();
+
+        return "
+            <h1>List Cleared!</h1>
+            <p><a href='/'>Home</a></p>
+        ";
+    });
+
 
     return $app;
 
